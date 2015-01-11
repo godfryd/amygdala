@@ -25,7 +25,7 @@ var Amygdala = function(options) {
   if (this._config.localStorage) {
     _.each(this._schema, function(value, key) {
       // check each schema entry for localStorage data
-      // TODO: filter out apiUrl and idAttribute 
+      // TODO: filter out apiUrl and idAttribute
       var storageCache = window.localStorage.getItem('amy-' + key);
       if (storageCache) {
         this._set(key, JSON.parse(storageCache), {'silent': true} );
@@ -89,7 +89,7 @@ Amygdala.prototype.ajax = function ajax(method, url, options) {
     if (request.status.toString().substr(0, 2) === '20') {
       deferred.resolve(request);
     } else {
-      deferred.reject(new Error('Request failed with status code ' + request.status));
+      deferred.reject(request);
     }
   };
 
@@ -123,7 +123,7 @@ Amygdala.prototype._getURI = function(type, params) {
   }
   url = this._config.apiUrl + this._schema[type].url;
 
-  // if the `idAttribute` specified by the config 
+  // if the `idAttribute` specified by the config
   // exists as a key in `params` append it's value to the url,
   // and remove it from `params` so it's not sent in the query string.
   if (params && this._config.idAttribute in params) {
@@ -146,7 +146,7 @@ Amygdala.prototype._emitChange = function(type) {
       // TODO: compare the previous object and trigger change events
     }.bind(this), type), 150);
   }
-  
+
   this._changeEvents[type]();
 }
 
