@@ -25,5 +25,6 @@
     "underscore"  : ">=1.6.0",
     "q": ">=1.0.1",
     "eventEmitter": ">=4.2.6"
-  }
+  },
+  "ignore": []
 }
